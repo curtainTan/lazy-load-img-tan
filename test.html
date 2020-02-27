@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: aquamarine;
+        }
+        .box1{
+            position: absolute;
+            top: 200px;
+            left: 100px;
+        }
+        .box2{
+            position: absolute;
+            top: 1200px;
+            left: 100px;
+        }
+    </style>
+    <div class="box"></div>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <script>
+        var div = Array.from( document.getElementsByTagName("div") )
+        for( let i = 0; i < div.length; i ++ ){
+            let rect = div[i].getBoundingClientRect()
+            console.log( "获取到的信息：", rect )
+        }
+        function test(){
+            document.addEventListener( "scroll", function(e){
+                var W = document.documentElement.clientWidth;
+                var H = document.documentElement.clientHeight;
+                console.log( "innerWidth:----",window.innerWidth )
+                // console.log( "滚动中---", e )
+                console.log( W, H )
+                let rect = div[2].getBoundingClientRect()
+                console.log( "获取到的信息：", rect )
+                // console.log( document.scrollTop )
+                // console.log( document.clientTop )
+                // console.log( document.offsetTop )
+            })
+        }
+        test()
+    </script>
+</body>
+</html>
