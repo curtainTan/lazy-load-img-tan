@@ -51,15 +51,8 @@ class MyLazyLoad {
     startListen(){
         window.addEventListener('DOMContentLoaded',debounce( this.loadImg.bind( this ) ));
         window.addEventListener( "scroll", debounce( this.loadImg.bind( this ) ))
-        window.addEventListener( "resize", () => {
-            this.setView_HW()
-            this.startListen()
-        })
-        this.parentNodes.forEach( item => {
-            item.addEventListener( "scroll", () => {
-                debounce( this.loadImg )
-            })
-        })
+        window.addEventListener( "resize", this.setView_HW )
+        this.parentNodes.forEach( item => item.addEventListener( "scroll", debounce( this.loadImg.bind( this ) )))
     }
     loadImg(){
         for( let i = 0; i < this.imgList.length; i ++ ){
@@ -67,7 +60,7 @@ class MyLazyLoad {
             if( this.imgList[i].src !== this.imgList[i].getAttribute( this.dataSrc ) ){
                 this.imgList[i].src = this.initImg
             } else {
-                break
+                continue
             }
             if( rect.top <= this.window_h && rect.bottom >= 0 && rect.left <= this.window_w && rect.right >= 0 ){
                 var imgLoad = new Image()
