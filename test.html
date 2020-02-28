@@ -20,12 +20,21 @@
             position: absolute;
             top: 200px;
             left: 100px;
+            animation: lazyLoadShow 3s;
         }
         .box2{
             position: absolute;
             top: 1200px;
             left: 100px;
         }
+        .show{
+            opacity: 0;
+            min-width: 80px;
+            min-width: 80px;
+            padding: 10px;
+        }
+        
+
     </style>
     <div class="box"></div>
     <div class="box1"></div>
@@ -41,13 +50,9 @@
                 var W = document.documentElement.clientWidth;
                 var H = document.documentElement.clientHeight;
                 console.log( "innerWidth:----",window.innerWidth )
-                // console.log( "滚动中---", e )
                 console.log( W, H )
                 let rect = div[2].getBoundingClientRect()
                 console.log( "获取到的信息：", rect )
-                // console.log( document.scrollTop )
-                // console.log( document.clientTop )
-                // console.log( document.offsetTop )
             })
         }
         test()

@@ -1,13 +1,19 @@
-import { debounce } from './debounce';
-// import { createStyle } from "./createStyle"
+import { debounce, createStyle } from './tools'
+
 
 class MyLazyLoad {
+    // 懒加载图片的类名
     cls: string
+    // 图片地址挂载位置
     dataSrc: string
+    // 加载时显示的图片地址
     initImg: string
+    // 所有需要加载的图片
     imgList: Array<HTMLImageElement>
+    // 可滑动的父节点
     parentNodes: Array<HTMLElement>
 
+    // 视窗宽高
     window_w: number
     window_h: number
 
@@ -22,9 +28,10 @@ class MyLazyLoad {
             this.setView_HW()
             this.getAllElement()
             this.startListen()
-            // createStyle()
+            createStyle()
         }
 
+    // 获取所有需要加载的元素
     getAllElement(){
         this.imgList = Array.from( document.querySelectorAll( "img" + this.cls ) )
         this.parentNodes = []
@@ -33,6 +40,7 @@ class MyLazyLoad {
             this.getAllParentElement( item, parentMap )
         })
     }
+    // 获取可滚动父节点
     getAllParentElement( ele: HTMLElement, parentMap ){
         let nowParent: HTMLElement
         if( ele.parentNode.nodeType == 1 ){
@@ -46,21 +54,22 @@ class MyLazyLoad {
             }
         }
     }
+    // 获取视窗宽高
     setView_HW(){
         this.window_h = window.innerHeight || document.documentElement.clientHeight
         this.window_w = window.innerWidth || document.documentElement.clientWidth
     }
+    // 滚动监听
     startListen(){
         window.addEventListener('DOMContentLoaded',debounce( this.loadImg.bind( this ) ));
         window.addEventListener( "scroll", debounce( this.loadImg.bind( this ) ))
         window.addEventListener( "resize", this.setView_HW )
         this.parentNodes.forEach( item => {
-            console.log( "滚动----1111111111" )
             item.addEventListener( "scroll", debounce( this.loadImg.bind( this ) ))
         })
     }
+    // 加载图片
     loadImg(){
-        console.log( "滚动----" )
         for( let i = 0; i < this.imgList.length; i ++ ){
             var rect = this.imgList[i].getBoundingClientRect()
             if( this.imgList[i].src !== this.imgList[i].getAttribute( this.dataSrc ) ){
@@ -73,6 +82,7 @@ class MyLazyLoad {
                 imgLoad.src = this.imgList[i].getAttribute( this.dataSrc )
                 imgLoad.onload = () => {
                     this.imgList[i].src = this.imgList[i].getAttribute( this.dataSrc )
+                    this.imgList[i].style.animation = "lazyLoadShow 3s"
                 }
             }
         }
