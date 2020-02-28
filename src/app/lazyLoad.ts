@@ -1,4 +1,5 @@
 import { debounce } from './debounce';
+// import { createStyle } from "./createStyle"
 
 class MyLazyLoad {
     cls: string
@@ -21,6 +22,7 @@ class MyLazyLoad {
             this.setView_HW()
             this.getAllElement()
             this.startListen()
+            // createStyle()
         }
 
     getAllElement(){
@@ -52,9 +54,13 @@ class MyLazyLoad {
         window.addEventListener('DOMContentLoaded',debounce( this.loadImg.bind( this ) ));
         window.addEventListener( "scroll", debounce( this.loadImg.bind( this ) ))
         window.addEventListener( "resize", this.setView_HW )
-        this.parentNodes.forEach( item => item.addEventListener( "scroll", debounce( this.loadImg.bind( this ) )))
+        this.parentNodes.forEach( item => {
+            console.log( "滚动----1111111111" )
+            item.addEventListener( "scroll", debounce( this.loadImg.bind( this ) ))
+        })
     }
     loadImg(){
+        console.log( "滚动----" )
         for( let i = 0; i < this.imgList.length; i ++ ){
             var rect = this.imgList[i].getBoundingClientRect()
             if( this.imgList[i].src !== this.imgList[i].getAttribute( this.dataSrc ) ){
