@@ -29,10 +29,10 @@ export function debounce( fn: ( ...argument )=> any , time: number = 300, immedi
     return function(){
         if( timer ){ clearTimeout( timer ) }
         if( immediate && !timer ) {
-            fn( arguments )
+            fn( ...arguments )
         }
         timer = setTimeout(() => {
-            fn( arguments )
+            fn( ...arguments )
         }, time )
     }
 }

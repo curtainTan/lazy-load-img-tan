@@ -7,7 +7,8 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 module.exports = {
     entry: {
         main: path.resolve(__dirname, "../src/main.ts"),
-        style: path.resolve(__dirname, "../src/style/style.scss")
+        style: path.resolve(__dirname, "../src/style/style.scss"),
+        lazyModule: path.resolve(__dirname, "../src/app/lazyLoad.ts")
     },
     module: {
         rules: [

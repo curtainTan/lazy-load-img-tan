@@ -3,21 +3,21 @@ import { debounce, createStyle } from './tools';
 
 class MyLazyLoad {
     // 懒加载图片的类名
-    cls: string
+    private cls: string
     // 图片地址挂载位置
-    dataSrc: string
+    private dataSrc: string
     // 加载时显示的图片地址
-    initImg: string
+    private initImg: string
     // 所有需要加载的图片
-    imgList: Array<HTMLImageElement>
+    private imgList: Array<HTMLImageElement>
     // 可滑动的父节点
-    parentNodes: Array<HTMLElement>
+    private parentNodes: Array<HTMLElement>
 
     // 视窗宽高
-    window_w: number
-    window_h: number
+    private window_w: number
+    private window_h: number
 
-    init(
+    public init(
         cls: string = ".lazyLoad", 
         src: string = "data-src", 
         initImg: string ="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC" 
@@ -32,7 +32,7 @@ class MyLazyLoad {
         }
 
     // 获取所有需要加载的元素
-    getAllElement(){
+    private getAllElement(){
         this.imgList = Array.from( document.querySelectorAll( "img" + this.cls ) )
         this.parentNodes = []
         let parentMap = new WeakMap()
@@ -41,7 +41,7 @@ class MyLazyLoad {
         })
     }
     // 获取可滚动父节点
-    getAllParentElement( ele: HTMLElement, parentMap ){
+    private getAllParentElement( ele: HTMLElement, parentMap ){
         let nowParent: HTMLElement
         if( ele.parentNode.nodeType == 1 ){
             nowParent = ele.parentNode as HTMLElement
@@ -55,12 +55,12 @@ class MyLazyLoad {
         }
     }
     // 获取视窗宽高
-    setView_HW(){
+    private setView_HW(){
         this.window_h = window.innerHeight || document.documentElement.clientHeight
         this.window_w = window.innerWidth || document.documentElement.clientWidth
     }
     // 滚动监听
-    startListen(){
+    private startListen(){
         window.addEventListener('DOMContentLoaded',debounce( this.loadImg.bind( this ) ));
         window.addEventListener( "scroll", debounce( this.loadImg.bind( this ) ))
         window.addEventListener( "resize", debounce( () => {
@@ -73,7 +73,7 @@ class MyLazyLoad {
         })
     }
     // 加载图片
-    loadImg(){
+    private loadImg(){
         for( let i = 0; i < this.imgList.length; i ++ ){
             var rect = this.imgList[i].getBoundingClientRect()
             if( this.imgList[i].src !== this.imgList[i].getAttribute( this.dataSrc ) ){
@@ -93,5 +93,5 @@ class MyLazyLoad {
     }
 }
 
-export default MyLazyLoad
 
+export default MyLazyLoad
