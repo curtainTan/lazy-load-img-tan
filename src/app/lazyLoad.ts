@@ -1,4 +1,4 @@
-import { debounce, createStyle } from './tools'
+import { debounce, createStyle } from './tools';
 
 
 class MyLazyLoad {
@@ -63,7 +63,11 @@ class MyLazyLoad {
     startListen(){
         window.addEventListener('DOMContentLoaded',debounce( this.loadImg.bind( this ) ));
         window.addEventListener( "scroll", debounce( this.loadImg.bind( this ) ))
-        window.addEventListener( "resize", this.setView_HW )
+        window.addEventListener( "resize", debounce( () => {
+                this.setView_HW()
+                this.loadImg()
+            })
+        )
         this.parentNodes.forEach( item => {
             item.addEventListener( "scroll", debounce( this.loadImg.bind( this ) ))
         })
