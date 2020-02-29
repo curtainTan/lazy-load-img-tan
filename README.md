@@ -3,7 +3,7 @@
 
 ## 预览：
 
-**地址：**[直达](https://curtaintan.github.io/lazyLoad/build/index.html)
+**地址：**[直达](https://curtaintan.github.io/lazy-load-img-tan/build/index.html)
 
 ![](view.gif)
 
@@ -23,13 +23,18 @@ MyLazyLoad.init( cls, src, initImg )
 
 ## 使用说明：
 
+安装：
+```
+yarn add lazy-load-img-tan
+```
+
 html结构：
 ```html
 <img class="lazyLoad" data-src="需要加载的图片" alt="">
 ```
 
 ```js
-import MyLazyLoad from "MyLazyLoad"
+import MyLazyLoad from "lazy-load-img-tan"
 var lazyload = new MyLazyLoad()
 
 lazyload.init( 
