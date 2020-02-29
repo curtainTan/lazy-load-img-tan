@@ -33,22 +33,24 @@ class MyLazyLoad {
 
     // 获取所有需要加载的元素
     private getAllElement(){
-        this.imgList = Array.from( document.querySelectorAll( "img" + this.cls ) )
+        let all = document.querySelectorAll( "img" + this.cls )
+        this.imgList = []
+        for( let i = 0; i < all.length; i ++ ){
+            this.imgList.push( all[i] as HTMLImageElement )
+        }
         this.parentNodes = []
-        let parentMap = new WeakMap()
         this.imgList.forEach( item => {
-            this.getAllParentElement( item, parentMap )
+            this.getAllParentElement( item )
         })
     }
     // 获取可滚动父节点
-    private getAllParentElement( ele: HTMLElement, parentMap ){
+    private getAllParentElement( ele: HTMLElement ){
         let nowParent: HTMLElement
-        if( ele.parentNode.nodeType == 1 ){
+        if( ele.parentNode.nodeType === 1 ){
             nowParent = ele.parentNode as HTMLElement
-            if( !parentMap.get( ele.parentNode ) && nowParent.scrollWidth > 0 ){
+            if( nowParent.scrollWidth > 0 && this.parentNodes.indexOf( nowParent ) < 0 ){
                 this.parentNodes.push( nowParent )
-                parentMap.set( ele.parentNode, "node-node"  )
-                this.getAllParentElement( nowParent, parentMap )
+                this.getAllParentElement( nowParent )
             } else {
                 return
             }
@@ -65,6 +67,8 @@ class MyLazyLoad {
         window.addEventListener( "scroll", debounce( this.loadImg.bind( this ) ))
         window.addEventListener( "resize", debounce( () => {
                 this.setView_HW()
+                // 处理瀑布流  加载更多图片
+                this.getAllElement()
                 this.loadImg()
             })
         )

@@ -27,12 +27,13 @@ export function createStyle(){
 export function debounce( fn: ( ...argument )=> any , time: number = 300, immediate: boolean = true ){
     let timer = null
     return function(){
+        let that = this
         if( timer ){ clearTimeout( timer ) }
         if( immediate && !timer ) {
-            fn( ...arguments )
+            fn.apply( this, arguments )
         }
-        timer = setTimeout(() => {
-            fn( ...arguments )
+        timer = setTimeout( function(){
+            fn.apply( that, arguments )
         }, time )
     }
 }
