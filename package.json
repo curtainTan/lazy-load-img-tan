@@ -1,17 +1,34 @@
 {
-  "name": "@types/lazy-load-img",
-  "version": "0.0.1",
-  "description": "a lazy-load img conponent",
-  "main": "index.js",
+  "name": "lazy-load-img-tan",
+  "version": "0.0.12",
+  "description": "a lazy-load img lib",
+  "keywords":[
+    "lazyload",
+    "img",
+    "typescript"
+  ],
+  "main": "types/index.js",
+  "types": "types/index.d.ts",
   "scripts": {
     "dev": "webpack-dev-server --config ./webpack/webpack.dev.js",
     "start": "webpack --config ./webpack/webpack.dev.js",
-    "build": "webpack --config ./webpack/webpack.prod.js"
+    "build": "webpack --config ./webpack/webpack.prod.js",
+    "build:type": "tsc -p ./tsconfig.type.json"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/curtainTan/lazy-load-img-tan"
+  },
+  "bugs": {
+    "url": "https://github.com/curtainTan/lazy-load-img-tan/issues"
+  },
+  "author": "tanyu",
   "license": "ISC",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "webpack-dev-server": "^3.10.3",
     "@babel/core": "^7.8.4",
+    "@babel/polyfill": "^7.8.3",
     "@babel/preset-env": "^7.8.4",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
@@ -26,8 +43,5 @@
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11",
     "webpack-merge": "^4.2.2"
-  },
-  "devDependencies": {
-    "webpack-dev-server": "^3.10.3"
   }
 }

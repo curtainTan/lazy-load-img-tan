@@ -24,8 +24,8 @@ export function createStyle(){
  * @param time 延迟时间
  * @param immediate 是否立即执行
  */
-export function debounce( fn: ( ...argument )=> any , time: number = 300, immediate: boolean = true ){
-    let timer = null
+export function debounce( fn: ( ...argument: any )=> any , time: number = 300, immediate: boolean = true ){
+    let timer: any = null
     return function(){
         let that = this
         if( timer ){ clearTimeout( timer ) }

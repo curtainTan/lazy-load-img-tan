@@ -1,4 +1,4 @@
-import MyLazyLoad from "./app/lazyLoad"
+import MyLazyLoad from "./app/index"
 
 
 let tan = new MyLazyLoad()

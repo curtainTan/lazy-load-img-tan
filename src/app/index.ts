@@ -33,11 +33,11 @@ class MyLazyLoad {
 
     // 获取所有需要加载的元素
     private getAllElement(){
-        let all = document.querySelectorAll( "img" + this.cls )
-        this.imgList = []
-        for( let i = 0; i < all.length; i ++ ){
-            this.imgList.push( all[i] as HTMLImageElement )
-        }
+        this.imgList = Array.from( document.querySelectorAll( "img" + this.cls ) )
+        // let all = document.querySelectorAll( "img" + this.cls )
+        // for( let i = 0; i < all.length; i ++ ){
+        //     this.imgList.push( all[i] as HTMLImageElement )
+        // }
         this.parentNodes = []
         this.imgList.forEach( item => {
             this.getAllParentElement( item )
