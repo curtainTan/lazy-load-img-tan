@@ -5,8 +5,6 @@
 
 **地址：**[点击预览](https://curtaintan.github.io/lazy-load-img-tan/test/index.html)
 
-图片来源于：[wclimb-lazyLoad](https://github.com/wclimb/lazyLoad)
-
 ## 说明：
 1. 支持横向滚动懒加载
 2. 动态加载
