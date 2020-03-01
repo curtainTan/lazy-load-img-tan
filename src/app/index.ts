@@ -1,7 +1,7 @@
 import { debounce, createStyle } from './tools';
 
 
-export class MyLazyLoad {
+export class LazyLoadImgTan {
     // 懒加载图片的类名
     private cls: string
     // 图片地址挂载位置
@@ -98,4 +98,4 @@ export class MyLazyLoad {
 }
 
 
-// module.exports = MyLazyLoad
+// module.exports = LazyLoadImgTan

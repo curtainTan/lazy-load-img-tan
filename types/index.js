@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var tools_1 = require("./tools");
-var MyLazyLoad = (function () {
-    function MyLazyLoad() {
+var LazyLoadImgTan = (function () {
+    function LazyLoadImgTan() {
     }
-    MyLazyLoad.prototype.init = function (cls, src, initImg) {
+    LazyLoadImgTan.prototype.init = function (cls, src, initImg) {
         if (cls === void 0) { cls = ".lazyLoad"; }
         if (src === void 0) { src = "data-src"; }
         if (initImg === void 0) { initImg = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"; }
@@ -16,7 +16,7 @@ var MyLazyLoad = (function () {
         this.startListen();
         tools_1.createStyle();
     };
-    MyLazyLoad.prototype.getAllElement = function () {
+    LazyLoadImgTan.prototype.getAllElement = function () {
         var _this = this;
         this.imgList = Array.from(document.querySelectorAll("img" + this.cls));
         this.parentNodes = [];
@@ -24,7 +24,7 @@ var MyLazyLoad = (function () {
             _this.getAllParentElement(item);
         });
     };
-    MyLazyLoad.prototype.getAllParentElement = function (ele) {
+    LazyLoadImgTan.prototype.getAllParentElement = function (ele) {
         var nowParent;
         if (ele.parentNode.nodeType === 1) {
             nowParent = ele.parentNode;
@@ -37,11 +37,11 @@ var MyLazyLoad = (function () {
             }
         }
     };
-    MyLazyLoad.prototype.setView_HW = function () {
+    LazyLoadImgTan.prototype.setView_HW = function () {
         this.window_h = window.innerHeight || document.documentElement.clientHeight;
         this.window_w = window.innerWidth || document.documentElement.clientWidth;
     };
-    MyLazyLoad.prototype.startListen = function () {
+    LazyLoadImgTan.prototype.startListen = function () {
         var _this = this;
         window.addEventListener('DOMContentLoaded', tools_1.debounce(this.loadImg.bind(this)));
         window.addEventListener("scroll", tools_1.debounce(this.loadImg.bind(this)));
@@ -54,7 +54,7 @@ var MyLazyLoad = (function () {
             item.addEventListener("scroll", tools_1.debounce(_this.loadImg.bind(_this)));
         });
     };
-    MyLazyLoad.prototype.loadImg = function () {
+    LazyLoadImgTan.prototype.loadImg = function () {
         var _this = this;
         var _loop_1 = function (i) {
             rect = this_1.imgList[i].getBoundingClientRect();
@@ -78,7 +78,7 @@ var MyLazyLoad = (function () {
             _loop_1(i);
         }
     };
-    return MyLazyLoad;
+    return LazyLoadImgTan;
 }());
-exports.default = MyLazyLoad;
+exports.LazyLoadImgTan = LazyLoadImgTan;
 //# sourceMappingURL=index.js.map

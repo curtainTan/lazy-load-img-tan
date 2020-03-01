@@ -1,4 +1,4 @@
-declare class MyLazyLoad {
+export declare class LazyLoadImgTan {
     private cls;
     private dataSrc;
     private initImg;
@@ -13,4 +13,3 @@ declare class MyLazyLoad {
     private startListen;
     private loadImg;
 }
-export default MyLazyLoad;

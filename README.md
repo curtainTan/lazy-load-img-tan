@@ -47,8 +47,8 @@ html结构：
 *案例请参考：/test/js/test.js*
 
 ```js
-import { MyLazyLoad } from "./app/index"
-var lazyload = new MyLazyLoad()
+import { LazyLoadImgTan } from "lazy-load-img-tan"
+var lazyload = new LazyLoadImgTan()
 
 lazyload.init( 
     ".lazyLoad",
