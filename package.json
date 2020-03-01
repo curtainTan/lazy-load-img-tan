@@ -1,6 +1,6 @@
 {
   "name": "lazy-load-img-tan",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "a lazy-load img lib",
   "keywords":[
     "lazyload",
@@ -13,7 +13,8 @@
     "dev": "webpack-dev-server --config ./webpack/webpack.dev.js",
     "start": "webpack --config ./webpack/webpack.dev.js",
     "build": "webpack --config ./webpack/webpack.prod.js",
-    "build:type": "tsc -p ./tsconfig.type.json"
+    "build:type": "tsc -p ./tsconfig.type.json",
+    "build:lib": "webpack --config ./webpack/webpack.lib.js"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,7 @@
     "url": "https://github.com/curtainTan/lazy-load-img-tan/issues"
   },
   "author": "tanyu",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {},
   "devDependencies": {
     "webpack-dev-server": "^3.10.3",

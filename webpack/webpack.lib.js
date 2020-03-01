@@ -3,10 +3,19 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 
+
 module.exports = {
+    mode: "production",
     entry: {
-        main: [ '@babel/polyfill', path.resolve(__dirname, "../src/main.ts") ],
-        style: path.resolve(__dirname, "../src/style/style.scss")
+        main: path.resolve(__dirname, "../src/app/index.ts")
+    },
+    output: {
+        path: path.resolve(__dirname, "../lib"),
+        filename: "[name].js",
+        // library: "lazy-load-img-tan"
+        // 使用 script src 使用 声明全局变量
+        library: "lazyLoadImgTan",
+        libraryTarget: "umd"
     },
     module: {
         rules: [
@@ -53,5 +62,4 @@ module.exports = {
         extensions: [ ".ts", ".js" ]
     }
 }
-
 
