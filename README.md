@@ -39,13 +39,15 @@ html结构：
 <script src="https://cdn.jsdelivr.net/npm/lazy-load-img-tan@0.0.13/lib/main.min.js"></script>
 
 <script>
-   var test = new lazyLoadImgTan.default()
+   var test = new lazyLoadImgTan()
     test.init( ".lazyLoad", "data-src", "http://www.wclimb.site/images/imgLoading.svg" ) 
 </script>
 ```
 
+*案例请参考：/test/js/test.js*
+
 ```js
-import MyLazyLoad from "lazy-load-img-tan"
+import { MyLazyLoad } from "./app/index"
 var lazyload = new MyLazyLoad()
 
 lazyload.init( 
@@ -54,6 +56,7 @@ lazyload.init(
     "http://www.wclimb.site/images/imgLoading.svg" 
     )
 ```
+*案例请参考：/src/main.ts*
 
 # 参考材料
 
