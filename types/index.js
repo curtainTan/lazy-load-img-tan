@@ -18,7 +18,11 @@ var LazyLoadImgTan = (function () {
     };
     LazyLoadImgTan.prototype.getAllElement = function () {
         var _this = this;
-        this.imgList = Array.from(document.querySelectorAll("img" + this.cls));
+        var all = document.querySelectorAll("img" + this.cls);
+        this.imgList = [];
+        for (var i = 0; i < all.length; i++) {
+            this.imgList.push(all[i]);
+        }
         this.parentNodes = [];
         this.imgList.forEach(function (item) {
             _this.getAllParentElement(item);
@@ -28,7 +32,7 @@ var LazyLoadImgTan = (function () {
         var nowParent;
         if (ele.parentNode.nodeType === 1) {
             nowParent = ele.parentNode;
-            if (nowParent.scrollWidth > 0 && this.parentNodes.indexOf(nowParent) < 0) {
+            if (nowParent.scrollWidth >= this.window_w && this.parentNodes.indexOf(nowParent) < 0) {
                 this.parentNodes.push(nowParent);
                 this.getAllParentElement(nowParent);
             }
@@ -38,8 +42,8 @@ var LazyLoadImgTan = (function () {
         }
     };
     LazyLoadImgTan.prototype.setView_HW = function () {
-        this.window_h = window.innerHeight || document.documentElement.clientHeight;
-        this.window_w = window.innerWidth || document.documentElement.clientWidth;
+        this.window_h = document.documentElement.clientHeight;
+        this.window_w = document.documentElement.clientWidth;
     };
     LazyLoadImgTan.prototype.startListen = function () {
         var _this = this;

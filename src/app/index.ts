@@ -33,11 +33,12 @@ export class LazyLoadImgTan {
 
     // 获取所有需要加载的元素
     private getAllElement(){
-        this.imgList = Array.from( document.querySelectorAll( "img" + this.cls ) )
-        // let all = document.querySelectorAll( "img" + this.cls )
-        // for( let i = 0; i < all.length; i ++ ){
-        //     this.imgList.push( all[i] as HTMLImageElement )
-        // }
+        // this.imgList = Array.from( document.querySelectorAll( "img" + this.cls ) )
+        let all = document.querySelectorAll( "img" + this.cls )
+        this.imgList = []
+        for( let i = 0; i < all.length; i ++ ){
+            this.imgList.push( all[i] as HTMLImageElement )
+        }
         this.parentNodes = []
         this.imgList.forEach( item => {
             this.getAllParentElement( item )
@@ -48,7 +49,7 @@ export class LazyLoadImgTan {
         let nowParent: HTMLElement
         if( ele.parentNode.nodeType === 1 ){
             nowParent = ele.parentNode as HTMLElement
-            if( nowParent.scrollWidth > 0 && this.parentNodes.indexOf( nowParent ) < 0 ){
+            if( nowParent.scrollWidth >= this.window_w && this.parentNodes.indexOf( nowParent ) < 0 ){
                 this.parentNodes.push( nowParent )
                 this.getAllParentElement( nowParent )
             } else {
@@ -58,8 +59,8 @@ export class LazyLoadImgTan {
     }
     // 获取视窗宽高
     private setView_HW(){
-        this.window_h = window.innerHeight || document.documentElement.clientHeight
-        this.window_w = window.innerWidth || document.documentElement.clientWidth
+        this.window_h = document.documentElement.clientHeight
+        this.window_w = document.documentElement.clientWidth
     }
     // 滚动监听
     private startListen(){

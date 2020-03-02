@@ -36,7 +36,7 @@ html结构：
 ```
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/lazy-load-img-tan@0.1.3/lib/main.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lazy-load-img-tan@0.1.7/lib/main.min.js"></script>
 
 <script>
    var test = new lazyLoadImgTan()
