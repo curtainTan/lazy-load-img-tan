@@ -3,19 +3,24 @@ import { debounce, createStyle } from './tools';
 
 export class LazyLoadImgTan {
     // 懒加载图片的类名
-    private cls: string
+    // 懒加载图片的类名
+    private cls!: string;
     // 图片地址挂载位置
-    private dataSrc: string
+    // 图片地址挂载位置
+    private dataSrc!: string;
     // 加载时显示的图片地址
-    private initImg: string
+    // 加载时显示的图片地址
+    private initImg!: string;
     // 所有需要加载的图片
-    private imgList: Array<HTMLImageElement>
+    // 所有需要加载的图片
+    private imgList!: Array<HTMLImageElement>;
     // 可滑动的父节点
-    private parentNodes: Array<HTMLElement>
-
+    // 可滑动的父节点
+    private parentNodes!: Array<HTMLElement>;
     // 视窗宽高
-    private window_w: number
-    private window_h: number
+    // 视窗宽高
+    private window_w!: number;
+    private window_h!: number;
 
     public init(
         cls: string = ".lazyLoad", 
@@ -47,7 +52,7 @@ export class LazyLoadImgTan {
     // 获取可滚动父节点
     private getAllParentElement( ele: HTMLElement ){
         let nowParent: HTMLElement
-        if( ele.parentNode.nodeType === 1 ){
+        if( ele.parentNode && ele.parentNode.nodeType === 1 ){
             nowParent = ele.parentNode as HTMLElement
             if( nowParent.scrollWidth >= this.window_w && this.parentNodes.indexOf( nowParent ) < 0 ){
                 this.parentNodes.push( nowParent )
@@ -88,9 +93,9 @@ export class LazyLoadImgTan {
             }
             if( rect.top <= this.window_h && rect.bottom >= 0 && rect.left <= this.window_w && rect.right >= 0 ){
                 var imgLoad = new Image()
-                imgLoad.src = this.imgList[i].getAttribute( this.dataSrc )
+                imgLoad.src = this.imgList[i].getAttribute( this.dataSrc ) || ""
                 imgLoad.onload = () => {
-                    this.imgList[i].src = this.imgList[i].getAttribute( this.dataSrc )
+                    this.imgList[i].src = this.imgList[i].getAttribute( this.dataSrc ) || ""
                     this.imgList[i].style.animation = "lazyLoadShow 3s"
                 }
             }
